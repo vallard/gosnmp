@@ -6,10 +6,11 @@ package gosnmp
 
 import (
 	"fmt"
-	l "github.com/alouca/gologger"
 	"net"
 	"strings"
 	"time"
+
+	l "github.com/alouca/gologger"
 )
 
 type GoSNMP struct {
@@ -281,4 +282,8 @@ func (x *GoSNMP) GetMulti(oids []string) (*SnmpPacket, error) {
 	}
 
 	return x.sendPacket(packet)
+}
+
+func (x *GoSNMP) Close() {
+	x.conn.Close()
 }
